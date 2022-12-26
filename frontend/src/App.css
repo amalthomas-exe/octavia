@@ -1,0 +1,175 @@
+body{
+  background-color: rgb(238, 238, 238);
+  font-family: 'Kanit', sans-serif;
+  color: rgb(105, 104, 103);
+}
+.App{
+  border-style: solid;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.navbar{
+  color: rgb(148, 145, 145);
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgba(126, 126, 236, 0.685);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.nav-logo{
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-logo-text{
+  font-size: 15px;
+}
+
+.nav-item{
+  margin-right: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-body{
+  margin-top: 15px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 85vh;
+}
+
+.login-box{
+  background-color: white;
+  border: 1px solid none;
+  border-radius: 20px;
+  display: flex;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  width: 30%;
+}
+
+.text-large{
+  font-size: 40px;
+}
+
+#login-heading{
+  margin-bottom: 10px;
+}
+
+#login-text{
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.text-small{
+  font-size: 15px;
+}
+
+.form-field-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+}
+
+#username, #password{
+  font-size: 15px;
+  font-weight: bold;
+  background-color: rgb(238, 238, 238);
+  margin-left: 5px;
+  height: 2em;
+  width: 100%;
+  border-radius: 8px;
+  padding: 2px;
+  border-style: solid;
+  outline: none;
+  transition: all ease-in-out 0.2s;
+}
+
+#username:focus, #password:focus{
+  border-color: rgb(126, 126, 236);
+}
+
+.sub-controls{
+  margin-top: 10px;
+  display: flex;
+  font-size: 15px;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%;
+}
+
+#checkbox-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#submit-btn-div{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.button-submit{
+  font-size: 17px;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(111, 111, 233);
+  margin-top: 30px;
+  width: 90%;
+  height: 2em;
+  border-radius: 8px;
+  border: 1px solid;
+}
+
+.small-link{
+  text-decoration: none;
+  cursor: pointer;
+  color: rgb(126, 126, 236);
+}
+
+#register{
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+@media(max-width:850px){
+  .login-box{
+    width: 50%;
+  }
+
+  #login-heading{
+    font-size:30px;
+  }
+
+  .sub-controls{
+    font-size: 12px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
