@@ -1,0 +1,153 @@
+.page-body{
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 85vh;
+}
+
+#signup-box{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    background-color: white;
+}
+  
+#image-box{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background: url("https://amalthomas-exe.github.io/images/cover.jpg");
+    background-position: center;
+    background-size: cover;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#id-body{
+  padding: 10px;
+}
+#id-box{
+  box-shadow: 0 4px 8px 0 rgba(22, 51, 129, 0.363), 0 6px 20px 0 rgba(17, 48, 136, 0.363);
+  border-radius: 10px;
+  background-color: rgb(30, 206, 177);
+  color: white;
+}
+#id-header{
+  text-align: center;
+  margin-bottom: 5px;
+  background-color: rgb(39, 134, 134);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+#id-name{
+  font-size: 30px;
+}
+
+#id-username{
+  margin-bottom: 8px;
+}
+
+#id-email-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#id-email{
+  margin-left: 5px;
+}
+
+#form-box{
+    padding:10px 30px;
+    width: 50%;
+}
+
+#login-heading{
+    text-align: center;
+}
+
+.form-field-box{
+    margin-top: 20px;
+}
+#eye-btn-signup{
+    background-color: rgb(238, 238, 238);
+    border-top-right-radius:8px ;
+    border-bottom-right-radius:8px ;
+    padding-right: 3px;
+    height: 2.1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    outline: none;
+  }
+
+  .password-field{
+    border-right: none;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  .password-field:focus{
+    border-color: rgb(126, 126, 236);;
+  }
+  
+  #eye-btn-signup:hover{
+    color: rgb(126, 126, 236);
+  }
+
+  #register-btn-div{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #sub-text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #login-link{
+    margin-left: 5px;
+  }
+
+  @media(max-width:850px){
+    #signup-box{
+      flex-direction: column;
+    }
+
+    #image-box{
+      width: 100%;
+      border-top-right-radius:20px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    #signup-box{
+      width: 90%;
+      display: flex;
+      align-items: center;
+    }
+    #id-box{
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+
+    #form-box{
+      width: fit-content;
+    }
+  }
