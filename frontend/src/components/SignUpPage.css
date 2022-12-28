@@ -76,6 +76,19 @@
 .form-field-box{
     margin-top: 20px;
 }
+
+#password-box-div{
+  display: flex;
+  flex-direction: column;
+}
+
+#password-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 #eye-btn-signup{
     background-color: rgb(238, 238, 238);
     border-top-right-radius:8px ;
@@ -98,7 +111,7 @@
     border-bottom-right-radius: 0px;
   }
 
-  .password-field:focus{
+  .login-fields:focus{
     border-color: rgb(126, 126, 236);;
   }
   
@@ -107,7 +120,7 @@
   }
 
   #register-btn-div{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -115,6 +128,7 @@
   }
 
   #sub-text{
+    margin-bottom: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -148,6 +162,6 @@
     }
 
     #form-box{
-      width: fit-content;
+      width: 80%;
     }
   }

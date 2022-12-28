@@ -5,6 +5,11 @@ import './SignUpPage.css';
 const SignUpPage = () => {
     const [passVisible, setPassVisible] = useState(false);
     const [details, setDetails] = useState({name:"",username:"",email:"",password:""});
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+
+    const handlePasswordConfirm  = (e)=>{
+        setPasswordConfirm(e.target.value)
+    }
 
     const updateDetails = (e) => {
         setDetails(details => ({
@@ -12,28 +17,18 @@ const SignUpPage = () => {
             [e.target.name]: e.target.value
         }))
     }
-    const updateUsername = (e) => {
-        setDetails({ username: e.target.value });
-    }
-    const updateEmail = (e) => {
-        setDetails({ email: e.target.value });
-    }
-    const updatePassword = (e) => {
-        setDetails({ password: e.target.value });
-    }
     return (
         <div>
             <div className="page-body">
                 <div id="signup-box">
                     <div id="image-box">
-                        {(details.name=="" && details.username=="" && details.email=="")?<h1 style={{"color":"white"}}>Register now</h1>:<div id="id-box">
+                        {(details.name==="" && details.username==="" && details.email==="")?<h1 style={{"color":"white"}}>Register now</h1>:<div id="id-box">
                             <div id="id-header">ID</div>
                             <div id="id-body">
                                 <div>
-                                    <div style={{"display":`${(details.name==""?"none":"")}`}} id="id-name">{details.name}</div>
-                                    <div style={{"display":`${(details.username==""?"none":"")}`}} id="id-username">@{details.username}</div>
-
-                                    <div style={{"display":`${(details.email==""?"none":"")}`}} id="id-email-box"><i class="fa-solid fa-envelope"></i><div id="id-email">{details.email}</div></div>
+                                    <div style={{"display":`${(details.name===""?"none":"")}`}} id="id-name">{details.name}</div>
+                                    <div style={{"display":`${(details.username===""?"none":"")}`}} id="id-username">@{details.username}</div>
+                                    <div style={{"display":`${(details.email===""?"none":"")}`}} id="id-email-box"><i className="fa-solid fa-envelope"></i><div id="id-email">{details.email}</div></div>
                                 </div>
                             </div>
                         </div>}
@@ -59,9 +54,12 @@ const SignUpPage = () => {
                             <input type={(passVisible) ? "text" : "password"} onChange={updateDetails} className="login-fields password-field" name="password" id="password" placeholder='Password' />
                             <i id="eye-btn-signup" onClick={() => { setPassVisible(!passVisible) }} className={(!passVisible) ? "fa-solid fa-eye" : "fa-sharp fa-solid fa-eye-slash"} />
                         </div>
-                        <div className="form-field-box" id="password-box">
+                        <div className="form-field-box" id="password-box-div">
+                            <div id="password-box">
                             <i className="fa-solid fa-key"></i>
-                            <input type="password" className="login-fields" name="password-confirm" id="password-confirm" placeholder='Confirm your Password' />
+                            <input type="password" onChange={handlePasswordConfirm} className="login-fields" name="password-confirm" id="password-confirm" placeholder='Confirm your Password' />
+                            </div>
+                            {(passwordConfirm!==details.password && passwordConfirm!=="")?<div style={{"fontSize":"15px","color":"red"}}>Passwords do not match</div>:""}
                         </div>
                         <div id="register-btn-div">
                             <button className="button-submit">Register</button>

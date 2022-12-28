@@ -45,7 +45,7 @@ const LoginPage = () => {
                         <a href='/' className='small-link'>Forgot password</a>
                     </div>
                     <div id="submit-btn-div">
-                        <button className="button-submit" onClick={handleClick}>Submit</button>
+                        <button className="button-submit" onClick={handleClick}>Log in</button>
                     </div>
                     <div id="register">
                         <div style={{"marginRight":"5px"}}>New Here?</div>
