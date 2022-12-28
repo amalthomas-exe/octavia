@@ -1,8 +1,11 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
+import noteContext from '../context/notes/noteContext';
 import './LoginPage.css';
 import {Link} from 'react-router-dom';
 
 const LoginPage = () => {
+    const context = useContext(noteContext);
+    const {theme} = context;
     // eslint-disable-next-line
     const [username, setUsername] = useState("");
     // eslint-disable-next-line
@@ -26,17 +29,17 @@ const LoginPage = () => {
     return (
         <div>
             <div className="page-body">
-                <div className="login-box dark-box">
+                <div className={`login-box ${(theme==="light")?"":"dark-box"}`}>
                     <div className="text-large" id="login-heading">Hello Again!</div>
                     <div className="text-small" id="login-text">Enter your username and password</div>
                     <div className="form-field-box" id="username-box">
                         <i className="fa-solid fa-at"></i>
-                        <input type="text" onChange={updateUsername} className="login-fields field-dark" name="username" id="username" placeholder='Username' />
+                        <input type="text" onChange={updateUsername} className={`login-fields ${(theme==="light")?"":"field-dark"}`} name="username" id="username" placeholder='Username' />
                     </div>
                     <div className="form-field-box" id="password-box">
                         <i className="fa-solid fa-key"></i>
-                        <input type={(passVisible)?"text":"password"} onChange={updatePassword} className="login-fields field-dark" name="password" id="password" placeholder='Password' />
-                        <i onClick={()=>{setPassVisible(!passVisible)}} className={(!passVisible)?"eye-btn-login fa-solid fa-eye eye-dark-login":"eye-btn-login eye-dark-login fa-sharp fa-solid fa-eye-slash"} />
+                        <input type={(passVisible)?"text":"password"} onChange={updatePassword} className={`login-fields ${(theme==="light")?"":"field-dark"}`} name="password" id="password" placeholder='Password' />
+                        <i onClick={()=>{setPassVisible(!passVisible)}} className={(!passVisible)?`eye-btn-login fa-solid fa-eye ${(theme==="light")?"":"eye-dark-login"}`:`eye-btn-login ${(theme==="light")?"":"eye-dark-login"} fa-sharp fa-solid fa-eye-slash`} />
                     </div>
                     <div className="sub-controls">
                         <div id="checkbox-div">

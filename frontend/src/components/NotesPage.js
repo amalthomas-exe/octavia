@@ -7,7 +7,7 @@ import './NotesPage.css';
 
 const NotesPage = () => {
     const context = useContext(noteContext);
-    const {notes,addNote,isAddingNote, setIsAddingNote} = context;
+    const {theme,notes,addNote,isAddingNote, setIsAddingNote} = context;
     const [loginState, setlogin] = useState(true);
     const redirect = useNavigate();
     useEffect(() => {
@@ -19,7 +19,7 @@ const NotesPage = () => {
         <div>
             {isAddingNote && <AddNote />}
             <div className="page-body">
-                <div className="notes-container dark-box-container">
+                <div className={`notes-container ${(theme==="light")?"":"dark-box-container"}`}>
                     <div className="text-large">
                         Your notes
                     </div>

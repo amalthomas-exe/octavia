@@ -67,6 +67,7 @@
     border-right: none;
   }
   .eye-btn-login{
+    background-color: rgb(238, 238, 238);
     border-top-right-radius:8px ;
     border-bottom-right-radius:8px ;
     padding-right: 3px;
