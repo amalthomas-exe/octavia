@@ -11,10 +11,10 @@
 #signup-box{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 20px;
+    overflow: hidden;
     display: flex;
     flex-direction: row;
     width: 60%;
-    background-color: white;
 }
   
 #image-box{
@@ -67,6 +67,9 @@
 #form-box{
     padding:10px 30px;
     width: 50%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;   
+    box-sizing: border-box; 
 }
 
 #login-heading{
@@ -89,21 +92,30 @@
   justify-content: center;
   width: 100%;
 }
-#eye-btn-signup{
-    background-color: rgb(238, 238, 238);
-    border-top-right-radius:8px ;
-    border-bottom-right-radius:8px ;
-    padding-right: 3px;
-    height: 2.1em;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border-top: 1px solid;
-    border-right: 1px solid;
-    border-bottom: 1px solid;
-    outline: none;
-  }
+.eye-btn-signup{
+  border-top-right-radius:8px ;
+  border-bottom-right-radius:8px ;
+  padding-right: 3px;
+  height: 2.1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  outline: none;
+}
+
+
+.eye-dark-signup{
+  background-color: rgb(126, 126, 126);
+  color: rgb(255, 255, 255);
+  border-color: rgb(126, 126, 126);
+}
+.eye-btn-signup:hover{
+  color: rgb(126, 126, 236);
+}
 
   .password-field{
     border-right: none;
@@ -112,13 +124,8 @@
   }
 
   .login-fields:focus{
-    border-color: rgb(126, 126, 236);;
+    border-color: rgb(126, 126, 236);
   }
-  
-  #eye-btn-signup:hover{
-    color: rgb(126, 126, 236);
-  }
-
   #register-btn-div{
     margin-bottom: 10px;
     display: flex;
@@ -137,6 +144,12 @@
 
   #login-link{
     margin-left: 5px;
+    text-decoration: none;
+    color: rgb(126, 126, 236);
+  }
+
+  .dark-box{
+    background-color: rgb(75, 74, 74);
   }
 
   @media(max-width:850px){
@@ -162,6 +175,6 @@
     }
 
     #form-box{
-      width: 80%;
+      width: 100%;
     }
   }

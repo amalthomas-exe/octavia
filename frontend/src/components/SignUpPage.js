@@ -33,31 +33,31 @@ const SignUpPage = () => {
                             </div>
                         </div>}
                     </div>
-                    <div id="form-box">
+                    <div id="form-box" className='dark-box'>
                         <div className="text-large" id="login-heading">Welcome</div>
                         <div className="text-small" id="login-text">Enter the following details</div>
                         <div className="form-field-box" id="name-box">
                             <i className="fa-solid fa-user"></i>
-                            <input type="text" onChange={updateDetails} className="login-fields" name="name" id="name" placeholder='Enter your name' />
+                            <input type="text" onChange={updateDetails} className="login-fields field-dark" name="name" id="name" placeholder='Enter your name' />
                         </div>
 
                         <div className="form-field-box" id="username-box">
                             <i className="fa-solid fa-at"></i>
-                            <input type="text" onChange={updateDetails} className="login-fields" name="username" id="username" placeholder='Username' />
+                            <input type="text" onChange={updateDetails} className="login-fields field-dark" name="username" id="username" placeholder='Username' />
                         </div>
                         <div className="form-field-box" id="email-box">
                             <i class="fa-solid fa-envelope"></i>
-                            <input type="email" onChange={updateDetails} className="login-fields" name="email" id="email" placeholder='Enter your email' />
+                            <input type="email" onChange={updateDetails} className="login-fields field-dark" name="email" id="email" placeholder='Enter your email' />
                         </div>
                         <div className="form-field-box" id="password-box">
                             <i className="fa-solid fa-key"></i>
-                            <input type={(passVisible) ? "text" : "password"} onChange={updateDetails} className="login-fields password-field" name="password" id="password" placeholder='Password' />
-                            <i id="eye-btn-signup" onClick={() => { setPassVisible(!passVisible) }} className={(!passVisible) ? "fa-solid fa-eye" : "fa-sharp fa-solid fa-eye-slash"} />
+                            <input type={(passVisible) ? "text" : "password"} onChange={updateDetails} className="login-fields field-dark password-field" name="password" id="password" placeholder='Password' />
+                            <i onClick={() => { setPassVisible(!passVisible) }} className={(!passVisible) ? "eye-btn-signup eye-dark-signup fa-solid fa-eye" : "eye-btn-signup eye-dark-signup fa-sharp fa-solid fa-eye-slash"} />
                         </div>
                         <div className="form-field-box" id="password-box-div">
                             <div id="password-box">
                             <i className="fa-solid fa-key"></i>
-                            <input type="password" onChange={handlePasswordConfirm} className="login-fields" name="password-confirm" id="password-confirm" placeholder='Confirm your Password' />
+                            <input type="password" onChange={handlePasswordConfirm} className="login-fields field-dark" name="password-confirm" id="password-confirm" placeholder='Confirm your Password' />
                             </div>
                             {(passwordConfirm!==details.password && passwordConfirm!=="")?<div style={{"fontSize":"15px","color":"red"}}>Passwords do not match</div>:""}
                         </div>

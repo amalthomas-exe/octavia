@@ -4,6 +4,7 @@ import { useState } from "react";
 const NoteState = (props) => {
   const host = "http://localhost:5000"
   const notesInitial = [];
+  const [theme,setTheme] = useState("light");
   const [notes, setNotes] = useState(notesInitial)
   const [isAddingNote, setIsAddingNote] = useState(false);
 
@@ -81,7 +82,7 @@ const NoteState = (props) => {
   }
 
   return (
-    <noteContext.Provider value={{isAddingNote,setIsAddingNote, notes, addNote, deleteNote, editNote, getNotes }}>
+    <noteContext.Provider value={{theme,setTheme,isAddingNote,setIsAddingNote, notes, addNote, deleteNote, editNote, getNotes }}>
       {props.children}
     </noteContext.Provider>
   )

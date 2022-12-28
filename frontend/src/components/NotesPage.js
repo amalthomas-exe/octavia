@@ -19,7 +19,7 @@ const NotesPage = () => {
         <div>
             {isAddingNote && <AddNote />}
             <div className="page-body">
-                <div className="notes-container">
+                <div className="notes-container dark-box-container">
                     <div className="text-large">
                         Your notes
                     </div>
