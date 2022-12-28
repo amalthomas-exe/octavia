@@ -154,16 +154,16 @@
     #modal-box{
         flex-direction: column;
         width: 90%;
-        height:60%;
+        height:fit-content;
     }
-
     #preview-box{
         width: 100%;
     }
 
     #add-note-box{
         width: 100%;
-        height: 100%;
+        height: fit-content;
+        padding-bottom: 10px;
     }
 
     #no-note-text{
