@@ -9,6 +9,7 @@ const NotesPage = () => {
     const context = useContext(noteContext);
     const {theme,notes,addNote,isAddingNote, setIsAddingNote} = context;
     const [loginState, setlogin] = useState(true);
+    const [action, setAction] = useState("");
     const redirect = useNavigate();
     useEffect(() => {
         if (!loginState) {
@@ -17,7 +18,7 @@ const NotesPage = () => {
     });
     return (
         <div>
-            {isAddingNote && <AddNote />}
+            {isAddingNote && <AddNote action={action} />}
             <div className="page-body">
                 <div className={`notes-container ${(theme==="light")?"":"dark-box-container"}`}>
                     <div className="text-large">
@@ -26,7 +27,7 @@ const NotesPage = () => {
                     <div id="notes-box">
                         {(notes.length === 0) ? "No notes to show" :
                             notes.map((note) => {
-                                return <NoteItem key={note.id} title={note.title} desc={note.desc} />
+                                return <NoteItem setAction={setAction} key={note.id} note={note} />
                             })}
                     </div>
                 </div>

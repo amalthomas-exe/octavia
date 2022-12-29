@@ -2,10 +2,10 @@ import React, { useState, useContext } from 'react'
 import noteContext from '../context/notes/noteContext';
 import './AddNote.css'
 
-const AddNote = () => {
+const AddNote = (props) => {
   const context = useContext(noteContext);
-  const { theme, addNote, setIsAddingNote } = context;
-  const [note, updateNote] = useState({ "title": "", "desc": "" });
+  const { theme, addNote, setIsAddingNote, note, updateNote } = context;
+  const {action} = props;
   const handleChange = (e) => {
     updateNote(note => ({
       ...note,
@@ -15,8 +15,10 @@ const AddNote = () => {
 
   const handleClick = (e) => {
     addNote(98, note.title, note.desc);
+    updateNote({"title":"","desc":""})
     setIsAddingNote(false);
   }
+
   return (
     <div id="page-body">
       <div onClick={() => { setIsAddingNote(false) }} id="btn-close"><i className="fa-solid fa-xmark"></i></div>
@@ -33,14 +35,14 @@ const AddNote = () => {
           <div id="add-note-div">
             <div className="entry-field">
               <div className="text-small">Title</div>
-              <input onChange={handleChange} className={`entry-field-input ${(theme === "light") ? "" : "field-dark"}`} type="text" name="title" id="title" />
+              <input value={note.title} onChange={handleChange} className={`entry-field-input ${(theme === "light") ? "" : "field-dark"}`} type="text" name="title" id="title" />
             </div>
             <div className="entry-field">
               <div className="text-small">Description</div>
-              <textarea onChange={handleChange} className={`entry-field-input ${(theme === "light") ? "" : "field-dark"}`} type="text" name="desc" id="desc" />
+              <textarea value={note.desc} onChange={handleChange} className={`entry-field-input ${(theme === "light") ? "" : "field-dark"}`} type="text" name="desc" id="desc" />
             </div>
             <div id="submit-btn-div">
-              <button id="submit-btn" onClick={handleClick}>Add note</button>
+              <button id="submit-btn" onClick={handleClick}>{(action==="edit")?"Edit":"Add"} note</button>
             </div>
           </div>
         </div>

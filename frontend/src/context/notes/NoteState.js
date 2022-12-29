@@ -7,6 +7,7 @@ const NoteState = (props) => {
   const [theme,setTheme] = useState("light");
   const [notes, setNotes] = useState(notesInitial)
   const [isAddingNote, setIsAddingNote] = useState(false);
+  const [note, updateNote] = useState({ "title":"", "desc": "" })
 
   // Get all Notes
   const getNotes = async () => {
@@ -82,7 +83,7 @@ const NoteState = (props) => {
   }
 
   return (
-    <noteContext.Provider value={{theme,setTheme,isAddingNote,setIsAddingNote, notes, addNote, deleteNote, editNote, getNotes }}>
+    <noteContext.Provider value={{note,updateNote,theme,setTheme,isAddingNote,setIsAddingNote, notes, addNote, deleteNote, editNote, getNotes }}>
       {props.children}
     </noteContext.Provider>
   )
