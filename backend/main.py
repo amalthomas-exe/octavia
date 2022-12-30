@@ -12,7 +12,9 @@ app = Flask(__name__)
 
 """Authorisation endpoint"""
 
+
 @app.route("/api/auth/login",methods=["POST"])
+
 def login():
     if request.method=="POST":
         username = request.json["username"]
@@ -79,8 +81,10 @@ def addnote():
             return jsonify({"status":401,"message":"Neither title nor description cannot be empty"})
         note = {"user":user, "title":title,"desc":desc}
         x = notes.insert_one(note)
+        note = notes.find_one({"_id":x.inserted_id})
+        note["_id"] = str(note["_id"])
         if x.acknowledged:
-            return jsonify({"status":200,"message":"Note added","note":{"title":title,"desc":desc}})
+            return jsonify({"status":200,"message":"Note added","note":note})
 
 @app.route("/api/notes/editnote",methods=["PUT"])
 def editnote():
@@ -92,11 +96,34 @@ def editnote():
         try:
             user = jwt.decode(token, key="secret",algorithms=["HS256"])["user"]
         except:
+            return jsonify({"status":401,"message":"Invalid auth token"})
+        note = notes.find_one({"_id":ObjectId(id)})
+        if note["user"]==user:
+            newNote = notes.find_one_and_update({"_id":ObjectId(id)},{"$set":{"title":title,"desc":desc}},return_document=pymongo.ReturnDocument.AFTER)
+            print(newNote)
+            newNote["_id"] = str(newNote["_id"])
+            return jsonify({"status":201,"message":"note edited","note":newNote})
+        else:
+            return jsonify({"status":404,"message":"Authorisation denied"})
+
+
+@app.route("/api/notes/deletenote",methods=["DELETE"])
+def deletenote():
+    if  request.method == "DELETE":
+        token = request.headers.get("auth-token")
+        id = request.json["id"]
+        try:
+            user = jwt.decode(token, key="secret",algorithms=["HS256"])["user"]
+        except:
             return jsonify({"status":404,"message":"Invalid auth token"})
-        newNote = notes.find_one_and_update({"_id":ObjectId(id)},{"$set":{"title":title,"desc":desc}},return_document=pymongo.ReturnDocument.AFTER)
-        print(newNote)
-        newNote["_id"] = str(newNote["_id"])
-        return jsonify({"status":201,"message":"note edited","note":newNote})
+        note = notes.find_one({"_id":ObjectId(id)})
+        if note["user"]==user:
+            deletedNote = notes.find_one_and_delete({"_id":ObjectId(id)})
+            deletedNote["_id"] = str(deletedNote["_id"])
+            return jsonify({"status":201,"message":"Note deleted","note":deletedNote})
+        else:
+            return jsonify({"status":404,"message":"Authorisation denied"})
+        
 
 if __name__=="__main__":
     app.run(debug=True)
