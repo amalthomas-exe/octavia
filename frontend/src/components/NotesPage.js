@@ -7,7 +7,7 @@ import './NotesPage.css';
 
 const NotesPage = () => {
     const context = useContext(noteContext);
-    const {theme,notes,addNote,isAddingNote, setIsAddingNote} = context;
+    const {theme,notes,addNote,isAddingNote, setIsAddingNote, getNotes} = context;
     const [loginState, setlogin] = useState(true);
     const [action, setAction] = useState("");
     const redirect = useNavigate();
@@ -16,6 +16,10 @@ const NotesPage = () => {
             redirect("/login");
         }
     });
+
+    useEffect(() => {
+        getNotes();
+    },[]);
     return (
         <div>
             {isAddingNote && <AddNote action={action} />}
@@ -27,12 +31,13 @@ const NotesPage = () => {
                     <div id="notes-box">
                         {(notes.length === 0) ? "No notes to show" :
                             notes.map((note) => {
-                                return <NoteItem setAction={setAction} key={note.id} note={note} />
+                                return <NoteItem setAction={setAction} key={note._id} note={note} />
                             })}
                     </div>
                 </div>
                 <div id="add-note-btn-div">
                     <div id="add-note-btn" onClick={()=>{
+                        setAction("add");
                         setIsAddingNote(true);
                     }}>
                         <i className="fa-solid fa-note-sticky"></i>

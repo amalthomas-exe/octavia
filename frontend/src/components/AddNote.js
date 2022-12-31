@@ -4,7 +4,7 @@ import './AddNote.css'
 
 const AddNote = (props) => {
   const context = useContext(noteContext);
-  const { theme, addNote, setIsAddingNote, note, updateNote } = context;
+  const { theme, addNote, setIsAddingNote, note, updateNote,editNote ,noteToBeEdited} = context;
   const {action} = props;
   const handleChange = (e) => {
     updateNote(note => ({
@@ -14,7 +14,12 @@ const AddNote = (props) => {
   }
 
   const handleClick = (e) => {
-    addNote(98, note.title, note.desc);
+    if(action==="edit"){
+      editNote(noteToBeEdited,note.title,note.desc);
+    }
+    else{
+    addNote(note.title, note.desc);
+    }
     updateNote({"title":"","desc":""})
     setIsAddingNote(false);
   }

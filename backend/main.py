@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 import pymongo
 import jwt
 from bson.objectid import ObjectId
@@ -9,12 +10,19 @@ users = db["users"]
 notes = db["notes"]
 
 app = Flask(__name__)
+#cors = CORS(app)
 
+
+@app.after_request
+def after_request(response):
+    print("CORS is here")
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,auth-token')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
 """Authorisation endpoint"""
 
-
 @app.route("/api/auth/login",methods=["POST"])
-
 def login():
     if request.method=="POST":
         username = request.json["username"]
@@ -112,6 +120,7 @@ def deletenote():
     if  request.method == "DELETE":
         token = request.headers.get("auth-token")
         id = request.json["id"]
+        print("id:   ",id)
         try:
             user = jwt.decode(token, key="secret",algorithms=["HS256"])["user"]
         except:
