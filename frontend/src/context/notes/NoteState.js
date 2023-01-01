@@ -10,6 +10,8 @@ const NoteState = (props) => {
   const [note, updateNote] = useState({ "title":"", "desc": "" })
   const [noteToBeEdited, setNoteToBeEdited] = useState("");
   const [noteToBeDeleted, setNoteToBeDeleted] = useState("");
+  const [loginState, setLoginState] = useState(false);
+  const [auth_token,setAuthToken] = useState("");
   // Get all Notes
   const getNotes = async () => {
     // API Call 
@@ -17,7 +19,7 @@ const NoteState = (props) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiNjNhZDgyMWQ2NmZjNDczNzlhYjZiZWU1In0.HcFG6rOe4SA_KlbL7vZgTVFnVASViXiLrrJSOHOFrqM"
+        "auth-token": auth_token
       }
     });
     const json = await response.json()
@@ -33,7 +35,7 @@ const NoteState = (props) => {
       method:"POST",
       headers:{
         'Content-Type': 'application/json',
-        "auth-token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiNjNhZDgyMWQ2NmZjNDczNzlhYjZiZWU1In0.HcFG6rOe4SA_KlbL7vZgTVFnVASViXiLrrJSOHOFrqM"
+        "auth-token":auth_token
       },
       body: JSON.stringify(body)
     })
@@ -49,7 +51,7 @@ const NoteState = (props) => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiNjNhZDgyMWQ2NmZjNDczNzlhYjZiZWU1In0.HcFG6rOe4SA_KlbL7vZgTVFnVASViXiLrrJSOHOFrqM"
+        "auth-token": auth_token
       },
       body:JSON.stringify({"id":id})
     });
@@ -66,7 +68,7 @@ const NoteState = (props) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiNjNhZDgyMWQ2NmZjNDczNzlhYjZiZWU1In0.HcFG6rOe4SA_KlbL7vZgTVFnVASViXiLrrJSOHOFrqM"
+        "auth-token": auth_token
       },
       body: JSON.stringify({"id":id,"title":title,"desc":desc})
     });
@@ -85,8 +87,30 @@ const NoteState = (props) => {
     setNotes(newNotes);
   }
 
+  //Login user
+  const loginUser = async (username, password)=>{
+    const response = await fetch(`${host}/api/auth/login`,{
+      method:"POST",
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({"username":username,"password":password})
+    });
+    let json = await response.json();
+    console.log(json.status)
+    if(json.status===404){
+      console.log("Invalid creds");
+      return false;
+    }else{
+      let auth_token = json["auth-token"];
+      localStorage.setItem("auth-token",auth_token);
+      setAuthToken(auth_token);
+      return true;
+    }
+  }
+
   return (
-    <noteContext.Provider value={{noteToBeDeleted, setNoteToBeDeleted,noteToBeEdited, setNoteToBeEdited,note,updateNote,theme,setTheme,isAddingNote,setIsAddingNote, notes, addNote, deleteNote, editNote, getNotes }}>
+    <noteContext.Provider value={{auth_token,setAuthToken,loginUser,loginState, setLoginState,noteToBeDeleted, setNoteToBeDeleted,noteToBeEdited, setNoteToBeEdited,note,updateNote,theme,setTheme,isAddingNote,setIsAddingNote, notes, addNote, deleteNote, editNote, getNotes }}>
       {props.children}
     </noteContext.Provider>
   )

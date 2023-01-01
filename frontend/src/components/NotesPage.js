@@ -7,19 +7,20 @@ import './NotesPage.css';
 
 const NotesPage = () => {
     const context = useContext(noteContext);
-    const {theme,notes,addNote,isAddingNote, setIsAddingNote, getNotes} = context;
-    const [loginState, setlogin] = useState(true);
+    const {theme,notes,addNote,isAddingNote, setIsAddingNote, getNotes, loginState,setLoginState, setAuthToken} = context;
     const [action, setAction] = useState("");
     const redirect = useNavigate();
     useEffect(() => {
         if (!loginState) {
             redirect("/login");
         }
-    });
-
-    useEffect(() => {
-        getNotes();
-    },[]);
+        else{
+            let token = localStorage.getItem("auth-token")
+            setAuthToken(token);
+            setLoginState(true);
+            getNotes();
+        }
+    },[loginState]);
     return (
         <div>
             {isAddingNote && <AddNote action={action} />}

@@ -1,11 +1,12 @@
 import React,{useState,useContext} from 'react';
 import noteContext from '../context/notes/noteContext';
 import './LoginPage.css';
-import {Link} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 
 const LoginPage = () => {
+    const redirect = useNavigate();
     const context = useContext(noteContext);
-    const {theme} = context;
+    const {theme,loginUser,setLoginState} = context;
     // eslint-disable-next-line
     const [username, setUsername] = useState("");
     // eslint-disable-next-line
@@ -20,11 +21,16 @@ const LoginPage = () => {
         setPassword(e.target.value);
     }
 
-    const handleClick = (event)=>{
-        //Make the api call
-        //POST /auth?username=username&password=password 
+    const handleClick = async (event)=>{
         event.preventDefault();
         console.log("Clicked");
+        if(await loginUser(username,password)===true){
+            alert("Logged in!");
+            setLoginState(true);
+            redirect("/");
+        }else{
+            alert("Invalid creds")
+        }
     }
     return (
         <div>

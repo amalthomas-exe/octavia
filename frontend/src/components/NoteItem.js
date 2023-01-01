@@ -8,12 +8,11 @@ const NoteItem = (props) => {
   const {setAction,note} = props;
 
   useEffect(()=>{
-    deleteNote(noteToBeDeleted)
+      deleteNote(noteToBeDeleted)
   },[noteToBeDeleted])
 
   const handleDeleteClick = ()=>{
-    console.log(note._id);
-    setNoteToBeDeleted(note._id);
+    setNoteToBeDeleted(note._id)
   }
 
   return (

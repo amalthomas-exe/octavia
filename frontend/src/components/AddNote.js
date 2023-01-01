@@ -26,7 +26,7 @@ const AddNote = (props) => {
 
   return (
     <div id="page-body">
-      <div onClick={() => { setIsAddingNote(false) }} id="btn-close"><i className="fa-solid fa-xmark"></i></div>
+      <div onClick={() => { updateNote({"title":"","desc":""});setIsAddingNote(false) }} id="btn-close"><i className="fa-solid fa-xmark"></i></div>
       <div id="modal-box">
         <div id="preview-box">
           {(note.title === "" && note.desc === "") ? <div id="no-note-text" className={(theme === "light") ? "" : 'text-dark'}>Add a note</div> :
