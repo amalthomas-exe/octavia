@@ -4,8 +4,8 @@ import pymongo
 import jwt
 from bson.objectid import ObjectId
 
-client = pymongo.MongoClient("mongodb://localhost:27017/")
-db = client["test-database"]
+client = pymongo.MongoClient("mongodb+srv://root:notesroot@cluster0.dm8n2b2.mongodb.net/?retryWrites=true&w=majority")
+db = client["notes-app-database"]
 users = db["users"]
 notes = db["notes"]
 

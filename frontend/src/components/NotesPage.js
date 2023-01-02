@@ -7,20 +7,27 @@ import './NotesPage.css';
 
 const NotesPage = () => {
     const context = useContext(noteContext);
-    const {theme,notes,addNote,isAddingNote, setIsAddingNote, getNotes, loginState,setLoginState, setAuthToken} = context;
+    const {theme,notes,addNote,isAddingNote, setIsAddingNote, getNotes, loginState,setLoginState, auth_token,setAuthToken} = context;
     const [action, setAction] = useState("");
     const redirect = useNavigate();
-    useEffect(() => {
-        if (!loginState) {
-            redirect("/login");
+    useEffect( () => {
+        let token = localStorage.getItem("auth-token");
+        if(token!==null){
+            console.log("Valid token found");
+            console.log(token);
+            setLoginState(true);
+            setAuthToken(token);
         }
         else{
-            let token = localStorage.getItem("auth-token")
-            setAuthToken(token);
-            setLoginState(true);
-            getNotes();
+            redirect("/login")
         }
     },[loginState]);
+    useEffect(()=>{
+        console.log("Auth: "+auth_token)
+        if(auth_token!==""){
+            getNotes();
+        }
+    },[auth_token])
     return (
         <div>
             {isAddingNote && <AddNote action={action} />}

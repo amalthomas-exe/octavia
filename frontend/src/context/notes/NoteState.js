@@ -4,7 +4,7 @@ import { useState } from "react";
 const NoteState = (props) => {
   const host = "http://localhost:5000"
   const notesInitial = [];
-  const [theme,setTheme] = useState("light");
+  const [theme,setTheme] = useState(localStorage.getItem(("note-theme")));
   const [notes, setNotes] = useState(notesInitial)
   const [isAddingNote, setIsAddingNote] = useState(false);
   const [note, updateNote] = useState({ "title":"", "desc": "" })
@@ -108,9 +108,27 @@ const NoteState = (props) => {
       return true;
     }
   }
+//Signup user
+  const signupUser = async (name,username,email, password)=>{
+    const response = await fetch(`${host}/api/auth/signup`,{
+      method:"POST",
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({"name":name,"email":email,"username":username,"password":password})
+    });
+    let json = await response.json();
+    console.log(json.status)
+    if(json.status===401){
+      console.log("User already exists");
+      return false;
+    }else{
+      return true;
+    }
+  }
 
   return (
-    <noteContext.Provider value={{auth_token,setAuthToken,loginUser,loginState, setLoginState,noteToBeDeleted, setNoteToBeDeleted,noteToBeEdited, setNoteToBeEdited,note,updateNote,theme,setTheme,isAddingNote,setIsAddingNote, notes, addNote, deleteNote, editNote, getNotes }}>
+    <noteContext.Provider value={{signupUser,auth_token,setAuthToken,loginUser,loginState, setLoginState,noteToBeDeleted, setNoteToBeDeleted,noteToBeEdited, setNoteToBeEdited,note,updateNote,theme,setTheme,isAddingNote,setIsAddingNote, notes, addNote, deleteNote, editNote, getNotes }}>
       {props.children}
     </noteContext.Provider>
   )

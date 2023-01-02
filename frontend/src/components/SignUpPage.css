@@ -20,7 +20,7 @@
 #image-box{
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    background: url("https://amalthomas-exe.github.io/images/cover.jpg");
+    background: url("/public/cover.jpg");
     background-position: center;
     background-size: cover;
     width: 50%;

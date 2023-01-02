@@ -1,11 +1,12 @@
 import React, { useState,useContext } from 'react';
 import noteContext from '../context/notes/noteContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './SignUpPage.css';
 
 const SignUpPage = () => {
     const context = useContext(noteContext);
-    const {theme} = context;
+    const redirect = useNavigate();
+    const {theme,signupUser} = context;
     const [passVisible, setPassVisible] = useState(false);
     const [details, setDetails] = useState({name:"",username:"",email:"",password:""});
     const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -19,6 +20,14 @@ const SignUpPage = () => {
             ...details,
             [e.target.name]: e.target.value
         }))
+    }
+
+    const handleRegister = async (e)=>{
+        if(await signupUser(details.name, details.username,details.email,details.password)===true){
+            redirect("/login");
+        }else{
+            alert("User already exists")
+        }
     }
     return (
         <div>
@@ -65,7 +74,7 @@ const SignUpPage = () => {
                             {(passwordConfirm!==details.password && passwordConfirm!=="")?<div style={{"fontSize":"15px","color":"red"}}>Passwords do not match</div>:""}
                         </div>
                         <div id="register-btn-div">
-                            <button className="button-submit">Register</button>
+                            <button className="button-submit" onClick={handleRegister}>Register</button>
                         </div>
                         <div id="sub-text">
                             Already a user? <Link id="login-link" to="/login">Log in</Link>
