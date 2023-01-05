@@ -27,7 +27,7 @@ const LoginPage = () => {
         if(await loginUser(username,password)===true){
             alert("Logged in!");
             setLoginState(true);
-            redirect("/");
+            redirect("/notes");
         }else{
             alert("Invalid creds")
         }
