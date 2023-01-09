@@ -33,11 +33,12 @@ function NavBar() {
           <div className="nav-logo-img"><i class="fa-solid fa-note-sticky"></i></div>
           <div className="nav-logo-text">Notes</div>
         </div>
-        <div className="nav-item">
+        <div className="nav-items">
           <label class="switch">
             <input type="checkbox" checked={(theme==="dark")?true:false} onClick={changeTheme}/>
               <span class="slider round"></span>
           </label>
+          {(theme==="light")?<i class="fa-solid fa-sun"></i>:<i class="fa-solid fa-moon"></i>}
         </div>
       </div>
     </div>

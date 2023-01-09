@@ -24,7 +24,7 @@ const NoteItem = (props) => {
             <div className="control-btn" onClick={handleDeleteClick}><i class="fa-solid fa-trash"></i></div>
           </div>
           </div>
-            <div id="note-desc">{note.desc}</div>
+            <div id="note-desc">{note.desc.substr(0,25)+"..."}</div>
         </div>
   )
 }
