@@ -5,7 +5,7 @@ import NoteState from './context/notes/NoteState';
 import LoginPage from './components/LoginPage';
 import NavBar from './components/NavBar';
 import SignUpPage from './components/SignUpPage';
-import NotesPage from './components/NotesPage';
+import NotesPage from "./components/NotesPage"
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/notes" element={<NotesPage />} />
+            <Route path="/" element={<NotesPage />} />
           </Routes>
         </Router>
       </NoteState>
